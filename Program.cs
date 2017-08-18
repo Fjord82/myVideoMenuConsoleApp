@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace VideoMenuApp
 {
-    class MainClass
+    public class MainClass
     {
         static int id = 1;
-        static string numberEntered = "";
+
         static List<Video> videoMenu = new List<Video>();
 
         public static void Main(string[] args)
@@ -50,22 +50,58 @@ namespace VideoMenuApp
 
         private static void InitWithMockData()
         {
-			videoMenu.Add(new Video()
-			{
-				VideoID = id++,
+            //Video example one
+            videoMenu.Add(new Video()
+            {
+                VideoID = id++,
 				Title = "Gremlings 3",
 				Author = "Roald Dahl",
-				Genre = "Horror/Comedy"
+                Genre = "Horror/Comedy"
+            });
 
-			});
+			//Video example two
+			videoMenu.Add(new Video()
+            {
+                VideoID = id++,
+                Title = "Taxi",
+                Author = "Steven King",
+                Genre = "Action"
+            });
 
+			//Video example three
 			videoMenu.Add(new Video()
 			{
 				VideoID = id++,
-				Title = "Taxi",
+				Title = "Godfather chapter 2",
+				Author = "Francis Ford Coppola",
+				Genre = "Classic"
+			});
+
+			//Video example four
+			videoMenu.Add(new Video()
+			{
+				VideoID = id++,
+				Title = "The Departed",
+				Author = "Martin Scorses",
+				Genre = "Thriller"
+			});
+
+			//Video example five
+			videoMenu.Add(new Video()
+			{
+				VideoID = id++,
+				Title = "Rounders",
 				Author = "Steven King",
 				Genre = "Action"
+			});
 
+			//Video example six
+			videoMenu.Add(new Video()
+			{
+				VideoID = id++,
+				Title = "Shawshank Redemtion",
+				Author = "Frank Darabont",
+				Genre = "Drama"
 			});
         }
 
@@ -76,7 +112,7 @@ namespace VideoMenuApp
             while (!int.TryParse(Console.ReadLine(), out id))
             {
                 Console.WriteLine("Please insert an excisting Id: ");
-                numberEntered = Console.ReadLine();
+
             }
             videoId = id;
             foreach (var video in videoMenu)
@@ -84,9 +120,10 @@ namespace VideoMenuApp
                 if (video.VideoID == id)
                 {
                     return video;
-                } else
+                }
+                else
                 {
-                    
+
                 }
             }
             return null;
@@ -94,13 +131,23 @@ namespace VideoMenuApp
 
         private static void ListAllVideos()
         {
+            string cat1 = "ID:";
+            string cat2 = "Title:";
+            string cat3 = "Author:";
+            string cat4 = "Genre:";
             Console.WriteLine("\nVideo menu list:\n");
 
-            Console.WriteLine($"ID:\tTitle:\t\tAuthor:\t\tGenre:\n" +
-                                  "______________________________________________________");
+            Console.WriteLine($"{cat1.PadRight(10, ' ')}" +
+                              $"{cat2.PadRight(20, ' ')}" +
+                              $"{cat3.PadRight(20, ' ')}" +
+                              $"{cat4.PadRight(20, ' ')}\n" +
+                                  $"______________________________________________________________");
             foreach (var video in videoMenu)
             {
-                Console.WriteLine($"{video.VideoID}\t{video.Title}\t{video.Author}\t{video.Genre} ");
+                Console.WriteLine($"{Convert.ToString(video.VideoID.ToString("D4").PadRight(10, ' '))}" +
+                                  $"{AddElipsisToString(video.Title).PadRight(20, ' ')}" +
+                                  $"{AddElipsisToString(video.Author).PadRight(20, ' ')}" +
+                                  $"{video.Genre.PadRight(20, ' ')}");
             }
             Console.WriteLine("\n");
         }
@@ -132,7 +179,8 @@ namespace VideoMenuApp
             if (videoExcist != null)
             {
                 videoMenu.Remove(videoExcist);
-            } else
+            }
+            else
             {
                 Console.WriteLine(videoIdFound + " did not exist inside the list, so nothing has been removed!");
             }
@@ -140,8 +188,8 @@ namespace VideoMenuApp
 
         private static void EditVideo()
         {
-			int videoIdFound;
-			var videoExcist = FindVideoById(out videoIdFound);
+            int videoIdFound;
+            var videoExcist = FindVideoById(out videoIdFound);
             if (videoExcist != null)
             {
                 //var video = FindVideoById();
@@ -182,6 +230,22 @@ namespace VideoMenuApp
                 Console.WriteLine("Please select a number between 1-5");
             }
             return selection;
+        }
+
+        private static string AddElipsisToString(string stringValue)
+        {
+            string toView;
+            const int maxView = 15;
+
+            if (stringValue.Length > maxView)
+            {
+                toView = stringValue.Substring(0, maxView) + "..." + "  ";
+            }
+            else
+            {
+                toView = stringValue;
+            }
+            return toView;
         }
 
     }
