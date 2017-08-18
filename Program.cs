@@ -69,7 +69,7 @@ namespace VideoMenuApp
 			});
         }
 
-        private static Video FindVideoById()
+        private static Video FindVideoById(out int videoId)
         {
             Console.WriteLine("Insert the video ID: ");
             int id;
@@ -78,7 +78,7 @@ namespace VideoMenuApp
                 Console.WriteLine("Please insert an excisting Id: ");
                 numberEntered = Console.ReadLine();
             }
-
+            videoId = id;
             foreach (var video in videoMenu)
             {
                 if (video.VideoID == id)
@@ -127,19 +127,21 @@ namespace VideoMenuApp
 
         private static void DeleteVideo()
         {
-            var videoExcist = FindVideoById();
+            int videoIdFound;
+            var videoExcist = FindVideoById(out videoIdFound);
             if (videoExcist != null)
             {
                 videoMenu.Remove(videoExcist);
             } else
             {
-                Console.WriteLine(numberEntered + " did not exist inside the list, so nothing has been removed!");
+                Console.WriteLine(videoIdFound + " did not exist inside the list, so nothing has been removed!");
             }
         }
 
         private static void EditVideo()
         {
-            var videoExcist = FindVideoById();
+			int videoIdFound;
+			var videoExcist = FindVideoById(out videoIdFound);
             if (videoExcist != null)
             {
                 //var video = FindVideoById();
