@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using VideoMenuAppBE;
+using VideoMenuAppBLL;
 
-namespace VideoMenuApp
+namespace VideoMenuAppUI
 {
     public class MainClass
     {
-        static int id = 1;
-
-        static List<Video> videoMenu = new List<Video>();
+        static BLLFacade bllFacade = new BLLFacade();
 
         public static void Main(string[] args)
         {
             InitWithMockData();
 
             Console.WriteLine("----------------------------------------------------------");
+
             string[] menuItems = {
                 "List all videos",
                 "Add a new video",
@@ -29,6 +30,7 @@ namespace VideoMenuApp
                 switch (selection)
                 {
                     case 1:
+                        Console.WriteLine("You have chosen: " + selection);
                         ListAllVideos();
                         break;
                     case 2:
@@ -51,58 +53,54 @@ namespace VideoMenuApp
         private static void InitWithMockData()
         {
             //Video example one
-            videoMenu.Add(new Video()
+            bllFacade.VideoServices.Create(new Video()
             {
-                VideoID = id++,
-				Title = "Gremlings 3",
-				Author = "Roald Dahl",
+                Title = "Gremlings 3",
+                Author = "Roald Dahl",
                 Genre = "Horror/Comedy"
             });
 
-			//Video example two
-			videoMenu.Add(new Video()
+
+            //Video example two
+            bllFacade.VideoServices.Create(new Video()
             {
-                VideoID = id++,
                 Title = "Taxi",
                 Author = "Steven King",
                 Genre = "Action"
             });
 
-			//Video example three
-			videoMenu.Add(new Video()
-			{
-				VideoID = id++,
-				Title = "Godfather chapter 2",
-				Author = "Francis Ford Coppola",
-				Genre = "Classic"
-			});
 
-			//Video example four
-			videoMenu.Add(new Video()
-			{
-				VideoID = id++,
-				Title = "The Departed",
-				Author = "Martin Scorses",
-				Genre = "Thriller"
-			});
+            //Video example three
+            bllFacade.VideoServices.Create(new Video()
+            {
+                Title = "Godfather chapter 2",
+                Author = "Francis Ford Coppola",
+                Genre = "Classic"
+            });
 
-			//Video example five
-			videoMenu.Add(new Video()
-			{
-				VideoID = id++,
-				Title = "Rounders",
-				Author = "Steven King",
-				Genre = "Action"
-			});
+            //Video example four
+            bllFacade.VideoServices.Create(new Video()
+            {
+                Title = "The Departed",
+                Author = "Martin Scorses",
+                Genre = "Thriller"
+            });
 
-			//Video example six
-			videoMenu.Add(new Video()
-			{
-				VideoID = id++,
-				Title = "Shawshank Redemtion",
-				Author = "Frank Darabont",
-				Genre = "Drama"
-			});
+            //Video example five
+            bllFacade.VideoServices.Create(new Video()
+            {
+                Title = "Rounders",
+                Author = "Steven King",
+                Genre = "Action"
+            });
+
+            //Video example six
+            bllFacade.VideoServices.Create(new Video()
+            {
+                Title = "Shawshank Redemtion",
+                Author = "Frank Darabont",
+                Genre = "Drama"
+            });
         }
 
         private static Video FindVideoById(out int videoId)
@@ -112,21 +110,9 @@ namespace VideoMenuApp
             while (!int.TryParse(Console.ReadLine(), out id))
             {
                 Console.WriteLine("Please insert an excisting Id: ");
-
             }
             videoId = id;
-            foreach (var video in videoMenu)
-            {
-                if (video.VideoID == id)
-                {
-                    return video;
-                }
-                else
-                {
-
-                }
-            }
-            return null;
+            return bllFacade.VideoServices.Get(id);
         }
 
         private static void ListAllVideos()
@@ -142,7 +128,7 @@ namespace VideoMenuApp
                               $"{cat3.PadRight(20, ' ')}" +
                               $"{cat4.PadRight(20, ' ')}\n" +
                                   $"______________________________________________________________");
-            foreach (var video in videoMenu)
+            foreach (var video in bllFacade.VideoServices.GetAll())
             {
                 Console.WriteLine($"{Convert.ToString(video.VideoID.ToString("D4").PadRight(10, ' '))}" +
                                   $"{AddElipsisToString(video.Title).PadRight(20, ' ')}" +
@@ -163,9 +149,8 @@ namespace VideoMenuApp
             Console.WriteLine("Genre: ");
             string genre = Console.ReadLine();
 
-            videoMenu.Add(new Video()
+            bllFacade.VideoServices.Create(new Video()
             {
-                VideoID = id++,
                 Title = title,
                 Author = author,
                 Genre = genre
@@ -178,12 +163,20 @@ namespace VideoMenuApp
             var videoExcist = FindVideoById(out videoIdFound);
             if (videoExcist != null)
             {
-                videoMenu.Remove(videoExcist);
+                bllFacade.VideoServices.Delete(videoIdFound);
+                Console.WriteLine("Video with ID no {0}", videoIdFound + " has been removed!");
+
             }
             else
             {
                 Console.WriteLine(videoIdFound + " did not exist inside the list, so nothing has been removed!");
             }
+            /**
+            var response = 
+                videoExcist == null ?
+            " did not exist inside the list, so nothing has been removed!" : "Video with ID no  has been removed!";
+            Console.WriteLine(response);
+            **/
         }
 
         private static void EditVideo()

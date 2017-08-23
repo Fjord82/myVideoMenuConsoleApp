@@ -1,5 +1,5 @@
-﻿using System;
-namespace VideoMenuApp
+﻿﻿using System;
+namespace VideoMenuAppBE
 {
     public class Video
     {
@@ -7,5 +7,6 @@ namespace VideoMenuApp
         public string Title { get; set; }
         public string Author { get; set; }
         public string Genre { get; set; }
+
     }
 }
