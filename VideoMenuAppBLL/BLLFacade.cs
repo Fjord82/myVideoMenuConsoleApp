@@ -1,5 +1,6 @@
-﻿using System;
+﻿﻿using System;
 using VideoMenuAppBLL.Services;
+using VideoMenuAppDAL;
 
 namespace VideoMenuAppBLL
 {
@@ -13,7 +14,7 @@ namespace VideoMenuAppBLL
 
         public IVideoMenuService VideoServices
         {
-            get { return new VideoServices(); }
+            get { return new VideoServices(new DALFacade().VideoRepository); }
         }
 
     }

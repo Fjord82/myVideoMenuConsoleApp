@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using VideoMenuAppBE;
@@ -8,36 +8,31 @@ namespace VideoMenuAppBLL.Services
 {
     public class VideoServices : IVideoMenuService
     {
+        IVideoRepository vidRepo;
+
+        public VideoServices(IVideoRepository vidRepo)
+        {
+            this.vidRepo = vidRepo;
+        }
 
         public Video Create(Video video)
         {
-            Video newVideo;
-            FakeDB.VideoMenu.Add(newVideo = new Video()
-            {
-                VideoID = FakeDB.Id++,
-                Title = video.Title,
-                Author = video.Author,
-                Genre = video.Genre
-            });
-            return newVideo;
+            return this.vidRepo.Create(video);
         }
 
         public Video Delete(int Id)
         {
-            var vid = FakeDB.VideoMenu.FirstOrDefault(x => x.VideoID == Id);
-            // var vid = Get(Id);
-            FakeDB.VideoMenu.Remove(vid);
-            return vid;
+            return this.vidRepo.Delete(Id);
         }
 
-        public Video Get(int id)
+        public Video Get(int Id)
         {
-            return FakeDB.VideoMenu.FirstOrDefault(x => x.VideoID == id);
+           return this.vidRepo.Get(Id);
         }
 
         public List<Video> GetAll()
         {
-            return new List<Video>(FakeDB.VideoMenu);
+            return this.vidRepo.GetAll();
         }
 
         public Video Update(Video video)

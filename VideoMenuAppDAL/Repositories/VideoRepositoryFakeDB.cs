@@ -1,29 +1,45 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using VideoMenuAppBE;
 
 namespace VideoMenuAppDAL.Repositories
 {
     public class VideoRepositoryFakeDB : IVideoRepository
     {
-        public Video Create(Video Video)
+		private static int Id = 1;
+
+		private static List<Video> VideoMenu = new List<Video>();
+
+        public Video Create(Video video)
         {
-            throw new NotImplementedException();
+			Video newVideo;
+			VideoMenu.Add(newVideo = new Video()
+			{
+				VideoID = Id++,
+				Title = video.Title,
+				Author = video.Author,
+				Genre = video.Genre
+			});
+			return newVideo;
         }
 
         public Video Delete(int Id)
         {
-            throw new NotImplementedException();
+			var vid = VideoMenu.FirstOrDefault(x => x.VideoID == Id);
+			// var vid = Get(Id);
+			VideoMenu.Remove(vid);
+			return vid;
         }
 
         public Video Get(int id)
         {
-            throw new NotImplementedException();
+            return VideoMenu.FirstOrDefault(x => x.VideoID == id);
         }
 
         public List<Video> GetAll()
         {
-            throw new NotImplementedException();
+            return new List<Video>(VideoMenu);
         }
     }
 }
