@@ -1,29 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using VideoMenuAppBE;
+using VideoMenuAppDAL.Context;
 
 namespace VideoMenuAppDAL.Repositories
 {
     public class VideoRepositoryEFMemory : IVideoRepository
     {
-        public Video Create(Video Video)
+        InMemoryContext context;
+
+        public VideoRepositoryEFMemory(InMemoryContext context)
         {
-            throw new NotImplementedException();
+
+            this.context = context;
+        }
+
+        public Video Create(Video video)
+        {
+            
+            this.context.Videos.Add(video);
+            this.context.SaveChanges();
+            return video;
+
         }
 
         public Video Delete(int Id)
         {
-            throw new NotImplementedException();
+            //var vid = VideoMenu.FirstOrDefault(x => x.VideoID == Id);
+            var vid = Get(Id);
+			
+            this.context.Videos.Remove(vid);
+            this.context.SaveChanges();
+			return vid;
         }
 
         public Video Get(int id)
         {
-            throw new NotImplementedException();
+            return this.context.Videos.FirstOrDefault(x => x.VideoID == id);
         }
 
         public List<Video> GetAll()
         {
-            throw new NotImplementedException();
+            return this.context.Videos.ToList();
         }
     }
 }

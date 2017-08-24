@@ -136,6 +136,7 @@
     <Compile Include="Repositories\VideoRepositoryFakeDB.cs" />
     <Compile Include="DALFacade.cs" />
     <Compile Include="Repositories\VideoRepositoryEFMemory.cs" />
+    <Compile Include="Context\InMemoryContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VideoMenuAppBE\VideoMenuAppBE.csproj">
@@ -145,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />
+    <Folder Include="Context\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
