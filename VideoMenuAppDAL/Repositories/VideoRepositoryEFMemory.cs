@@ -20,7 +20,7 @@ namespace VideoMenuAppDAL.Repositories
         {
             
             this.context.Videos.Add(video);
-            this.context.SaveChanges();
+
             return video;
 
         }
@@ -31,7 +31,7 @@ namespace VideoMenuAppDAL.Repositories
             var vid = Get(Id);
 			
             this.context.Videos.Remove(vid);
-            this.context.SaveChanges();
+
 			return vid;
         }
 

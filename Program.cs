@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using VideoMenuAppBE;
 using VideoMenuAppBLL;
@@ -194,12 +194,14 @@ namespace VideoMenuAppUI
                 videoExcist.Genre = Console.ReadLine();
                 Console.WriteLine("Program is returning to main view.\n" +
                                   "____________________________________________");
+                bllFacade.VideoServices.Update(videoExcist);
             }
             else
             {
                 Console.WriteLine("The ID entered does not excist!");
                 EditVideo();
             }
+
 
         }
 

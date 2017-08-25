@@ -14,7 +14,7 @@ namespace VideoMenuAppBLL
 
         public IVideoMenuService VideoServices
         {
-            get { return new VideoServices(new DALFacade().VideoRepository); }
+            get { return new VideoServices(new DALFacade()); }
         }
 
     }

@@ -137,6 +137,8 @@
     <Compile Include="DALFacade.cs" />
     <Compile Include="Repositories\VideoRepositoryEFMemory.cs" />
     <Compile Include="Context\InMemoryContext.cs" />
+    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="UOW\UnitOfWorkMem.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VideoMenuAppBE\VideoMenuAppBE.csproj">
@@ -147,6 +149,7 @@
   <ItemGroup>
     <Folder Include="Repositories\" />
     <Folder Include="Context\" />
+    <Folder Include="UOW\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
