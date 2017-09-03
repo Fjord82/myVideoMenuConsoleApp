@@ -139,17 +139,13 @@
     <Compile Include="Context\InMemoryContext.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="UOW\UnitOfWorkMem.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\VideoMenuAppBE\VideoMenuAppBE.csproj">
-      <Project>{6640550E-DA79-4D62-A716-BB75CB31E42E}</Project>
-      <Name>VideoMenuAppBE</Name>
-    </ProjectReference>
+    <Compile Include="Entities\Video.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />
     <Folder Include="Context\" />
     <Folder Include="UOW\" />
+    <Folder Include="Entities\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

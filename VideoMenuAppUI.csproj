@@ -40,10 +40,6 @@
       <Project>{5533AA31-79C2-4758-AF31-7A0EF3EDD7A4}</Project>
       <Name>VideoMenuAppBLL</Name>
     </ProjectReference>
-    <ProjectReference Include="VideoMenuAppBE\VideoMenuAppBE.csproj">
-      <Project>{6640550E-DA79-4D62-A716-BB75CB31E42E}</Project>
-      <Name>VideoMenuAppBE</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

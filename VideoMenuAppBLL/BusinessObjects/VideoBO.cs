@@ -1,7 +1,7 @@
 ﻿﻿using System;
-namespace VideoMenuAppBE
+namespace VideoMenuAppBLL.BusinessObjects
 {
-    public class Video
+    public class VideoBO
     {
         public int VideoID { get; set; }
         public string Title { get; set; }

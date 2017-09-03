@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using VideoMenuAppBE;
+﻿using System.Collections.Generic;
+using VideoMenuAppDAL.Entities;
 
 namespace VideoMenuAppDAL
 {

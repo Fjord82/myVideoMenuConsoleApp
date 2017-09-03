@@ -34,12 +34,9 @@
     <Compile Include="BLLFacade.cs" />
     <Compile Include="IVideoMenuService.cs" />
     <Compile Include="Services\VideoServices.cs" />
+    <Compile Include="BusinessObjects\VideoBO.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VideoMenuAppBE\VideoMenuAppBE.csproj">
-      <Project>{6640550E-DA79-4D62-A716-BB75CB31E42E}</Project>
-      <Name>VideoMenuAppBE</Name>
-    </ProjectReference>
     <ProjectReference Include="..\VideoMenuAppDAL\VideoMenuAppDAL.csproj">
       <Project>{642B0BB1-5383-48D7-AF8D-17CF26C8BE64}</Project>
       <Name>VideoMenuAppDAL</Name>
@@ -47,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
+    <Folder Include="BusinessObjects\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

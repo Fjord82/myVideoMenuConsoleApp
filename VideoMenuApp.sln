@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoMenuAppBLL", "VideoMen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoMenuAppDAL", "VideoMenuAppDAL\VideoMenuAppDAL.csproj", "{642B0BB1-5383-48D7-AF8D-17CF26C8BE64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoMenuAppBE", "VideoMenuAppBE\VideoMenuAppBE.csproj", "{6640550E-DA79-4D62-A716-BB75CB31E42E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -27,9 +25,5 @@ Global
 		{642B0BB1-5383-48D7-AF8D-17CF26C8BE64}.Debug|x86.Build.0 = Debug|Any CPU
 		{642B0BB1-5383-48D7-AF8D-17CF26C8BE64}.Release|x86.ActiveCfg = Release|Any CPU
 		{642B0BB1-5383-48D7-AF8D-17CF26C8BE64}.Release|x86.Build.0 = Release|Any CPU
-		{6640550E-DA79-4D62-A716-BB75CB31E42E}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{6640550E-DA79-4D62-A716-BB75CB31E42E}.Debug|x86.Build.0 = Debug|Any CPU
-		{6640550E-DA79-4D62-A716-BB75CB31E42E}.Release|x86.ActiveCfg = Release|Any CPU
-		{6640550E-DA79-4D62-A716-BB75CB31E42E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,8 +1,9 @@
 ﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using VideoMenuAppBE;
+using VideoMenuAppBLL.BusinessObjects;
 using VideoMenuAppDAL;
+using VideoMenuAppDAL.Entities;
 
 namespace VideoMenuAppBLL.Services
 {
@@ -15,43 +16,45 @@ namespace VideoMenuAppBLL.Services
             this.facade = facade;
         }
 
-        public Video Create(Video video)
+        public VideoBO Create(VideoBO video)
         {
             using (var uow = facade.UnitOfWork)
             {
-                var newVid = uow.VideoRepository.Create(video);
+                var newVid = uow.VideoRepository.Create(Convert(video));
                 uow.Complete();
-                return newVid;
+                return Convert(newVid);
             }
         }
 
-        public Video Delete(int Id)
+        public VideoBO Delete(int Id)
         {
 			using (var uow = facade.UnitOfWork)
 			{
                 var newVid = uow.VideoRepository.Delete(Id);
 				uow.Complete();
-				return newVid;
+                return Convert(newVid);
 			}
         }
 
-        public Video Get(int Id)
+        public VideoBO Get(int Id)
         {
 			using (var uow = facade.UnitOfWork)
 			{
-				return uow.VideoRepository.Get(Id);
+                return Convert(uow.VideoRepository.Get(Id));
 			}
         }
 
-        public List<Video> GetAll()
+        public List<VideoBO> GetAll()
         {
 			using (var uow = facade.UnitOfWork)
 			{
-				return uow.VideoRepository.GetAll();
+                //Video -> VideoBO
+                //return uow.VideoRepository.GetAll();
+                return uow.VideoRepository.GetAll().Select(vid => Convert(vid)).ToList();
 			}
         }
 
-        public Video Update(Video video)
+        public VideoBO Update(VideoBO video)
         {
             using(var uow = facade.UnitOfWork)
             {
@@ -64,8 +67,30 @@ namespace VideoMenuAppBLL.Services
 				videoFromDB.Author = video.Author;
 				videoFromDB.Genre = video.Genre;
                 uow.Complete();
-				return videoFromDB;
+                return Convert(videoFromDB);
             }
         }
+
+        private Video Convert(VideoBO vid)
+        {
+            return new Video()
+            {
+                VideoID = vid.VideoID,
+                Title = vid.Title,
+                Author = vid.Author,
+                Genre = vid.Genre
+            };
+        }
+
+		private VideoBO Convert(Video vid)
+		{
+			return new VideoBO()
+			{
+				VideoID = vid.VideoID,
+				Title = vid.Title,
+				Author = vid.Author,
+				Genre = vid.Genre
+			};
+		}
     }
 }

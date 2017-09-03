@@ -1,7 +1,7 @@
 ﻿﻿using System;
 using System.Collections.Generic;
-using VideoMenuAppBE;
 using VideoMenuAppBLL;
+using VideoMenuAppBLL.BusinessObjects;
 
 namespace VideoMenuAppUI
 {
@@ -53,7 +53,7 @@ namespace VideoMenuAppUI
         private static void InitWithMockData()
         {
             //Video example one
-            bllFacade.VideoServices.Create(new Video()
+            bllFacade.VideoServices.Create(new VideoBO()
             {
                 Title = "Gremlings 3",
                 Author = "Roald Dahl",
@@ -62,7 +62,7 @@ namespace VideoMenuAppUI
 
 
             //Video example two
-            bllFacade.VideoServices.Create(new Video()
+            bllFacade.VideoServices.Create(new VideoBO()
             {
                 Title = "Taxi",
                 Author = "Steven King",
@@ -71,7 +71,7 @@ namespace VideoMenuAppUI
 
 
             //Video example three
-            bllFacade.VideoServices.Create(new Video()
+            bllFacade.VideoServices.Create(new VideoBO()
             {
                 Title = "Godfather chapter 2",
                 Author = "Francis Ford Coppola",
@@ -79,7 +79,7 @@ namespace VideoMenuAppUI
             });
 
             //Video example four
-            bllFacade.VideoServices.Create(new Video()
+            bllFacade.VideoServices.Create(new VideoBO()
             {
                 Title = "The Departed",
                 Author = "Martin Scorses",
@@ -87,7 +87,7 @@ namespace VideoMenuAppUI
             });
 
             //Video example five
-            bllFacade.VideoServices.Create(new Video()
+            bllFacade.VideoServices.Create(new VideoBO()
             {
                 Title = "Rounders",
                 Author = "Steven King",
@@ -95,7 +95,7 @@ namespace VideoMenuAppUI
             });
 
             //Video example six
-            bllFacade.VideoServices.Create(new Video()
+            bllFacade.VideoServices.Create(new VideoBO()
             {
                 Title = "Shawshank Redemtion",
                 Author = "Frank Darabont",
@@ -103,7 +103,7 @@ namespace VideoMenuAppUI
             });
         }
 
-        private static Video FindVideoById(out int videoId)
+        private static VideoBO FindVideoById(out int videoId)
         {
             Console.WriteLine("Insert the video ID: ");
             int id;
@@ -149,7 +149,7 @@ namespace VideoMenuAppUI
             Console.WriteLine("Genre: ");
             string genre = Console.ReadLine();
 
-            bllFacade.VideoServices.Create(new Video()
+            bllFacade.VideoServices.Create(new VideoBO()
             {
                 Title = title,
                 Author = author,
@@ -201,8 +201,6 @@ namespace VideoMenuAppUI
                 Console.WriteLine("The ID entered does not excist!");
                 EditVideo();
             }
-
-
         }
 
         private static int ShowMenu(string[] menuItems)

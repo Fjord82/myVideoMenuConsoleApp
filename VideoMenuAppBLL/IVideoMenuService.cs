@@ -1,24 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-
-using VideoMenuAppBE;
+using VideoMenuAppBLL.BusinessObjects;
 
 namespace VideoMenuAppBLL
 {
     public interface IVideoMenuService
     {
         // C - Create a new element
-        Video Create(Video Video);
+        VideoBO Create(VideoBO Video);
 
         // R - Read all or a single element 
-        List<Video> GetAll();
-        Video Get(int id);
+        List<VideoBO> GetAll();
+        VideoBO Get(int id);
 
         // U - Update an existing element
-        Video Update(Video video);
+        VideoBO Update(VideoBO video);
 
         // D - Delete an element by Id
-        Video Delete(int Id);
+        VideoBO Delete(int Id);
 
     }
 }
